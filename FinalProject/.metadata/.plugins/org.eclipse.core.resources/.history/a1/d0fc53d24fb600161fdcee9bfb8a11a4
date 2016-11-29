@@ -1,0 +1,19 @@
+'''
+Created on Nov 29, 2016
+
+@author: demon
+'''
+import csv
+
+csvfile = open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/EmotionText.csv')
+
+nfile = open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/AllText.txt','w')
+dfile = open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/AllText.txt','w')
+
+reader = csv.DictReader(csvfile, dialect='excel')
+for row in reader:
+    nfile.write(row['author']+" ")
+    dfile.write(row['content']+" \n")
+
+nfile.close()
+dfile.close()

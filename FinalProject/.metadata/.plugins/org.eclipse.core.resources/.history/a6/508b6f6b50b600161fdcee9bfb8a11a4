@@ -1,0 +1,16 @@
+'''
+Created on Nov 29, 2016
+
+@author: demon
+'''
+import csv
+
+nfile = open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/AllAuthors.txt','r')
+dfile = open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/AllText.txt','r')
+
+for line in dfile:
+    print line
+    nfile.readline()
+
+nfile.close()
+dfile.close()

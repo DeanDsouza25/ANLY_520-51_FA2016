@@ -1,0 +1,15 @@
+'''
+Created on Nov 29, 2016
+
+@author: demon
+'''
+import csv
+import nltk
+
+TempSt = ''
+csvfile = open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/EmotionText.csv')
+reader = csv.DictReader(csvfile, dialect='excel')
+for row in reader:
+    TempSt += row['content']
+    
+print TempSt

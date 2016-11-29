@@ -1,0 +1,31 @@
+-- VERSION_4
+-- START DISKCACHE_2
+C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\.metadata\.plugins\org.eclipse.core.resources\.projects\ANLY_520-51_SentimentAnalysisProject\com.python.pydev.analysis\v2_indexcache
+com.ANLY52051FinalProject.dean.SentTok|1480440569312087000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\SentTok.py
+com.__init__|1480364957692485000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\__init__.py
+com.ANLY52051FinalProject.__init__|1480364957708108000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\__init__.py
+com.ANLY52051FinalProject.dean.RSData|1480436910814016000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\RSData.py
+com.ANLY52051FinalProject.dean.__init__|1480364957732249000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\__init__.py
+com.ANLY52051FinalProject.dean.WPData|1480436558714552000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\WPData.py
+-- END DISKCACHE
+-- START DICTIONARY
+3
+3=com.ANLY52051FinalProject.dean.SentTok
+2=com.ANLY52051FinalProject.dean.RSData
+1=com.ANLY52051FinalProject.dean.WPData
+-- END DICTIONARY
+-- START TREE 1
+9
+csv|1|csvfile!11@
+dfi|2|dfile!19@dfile!11@
+i|0|
+nfi|2|nfile!11@nfile!19@
+rea|1|reader!11@
+sen|0|
+tem|1|temp!27@
+tok|1|tok!27@
+txt|1|txtFile!27@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

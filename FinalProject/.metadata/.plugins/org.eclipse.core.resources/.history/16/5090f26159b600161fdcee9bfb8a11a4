@@ -1,0 +1,14 @@
+'''
+Created on Nov 29, 2016
+
+@author: demon
+'''
+
+from __future__ import division
+
+tok=[]
+txtFile=open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/AllText.txt','rU')
+temp=txtFile.read()
+tok.append(temp.split(' '))
+    
+print(tok[0:20])
