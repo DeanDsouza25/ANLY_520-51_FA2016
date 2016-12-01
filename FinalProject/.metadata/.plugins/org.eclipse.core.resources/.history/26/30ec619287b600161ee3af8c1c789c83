@@ -1,0 +1,25 @@
+'''
+Created on Nov 29, 2016
+
+@author: demon
+'''
+
+import re
+
+def pToken(tok):
+    temp = []
+    for t in tok:
+        if re.search('^[A-Za-z0-9]+\.\.+[A-Za-z0-9]$',t):
+            print(re.findall('^[A-Za-z0-9]+\.\.+$',t))
+        elif re.search('http://[A-Za-z0-9\./]+',t):
+            temp.append("link")
+        else:
+            temp.append(t)
+            
+    return temp
+
+var = raw_input("Enter the string :")
+varTok = var.split(' ')
+tempList = pToken(varTok)
+for x in tempList:
+    print x

@@ -1,30 +1,34 @@
 -- VERSION_4
 -- START DISKCACHE_2
 C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\.metadata\.plugins\org.eclipse.core.resources\.projects\ANLY_520-51_SentimentAnalysisProject\com.python.pydev.analysis\v2_indexcache
-com.ANLY52051FinalProject.dean.SentTok|1480440569312087000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\SentTok.py
+com.ANLY52051FinalProject.dean.DictBuilder|1480458689509240000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\DictBuilder.py
 com.__init__|1480364957692485000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\__init__.py
 com.ANLY52051FinalProject.__init__|1480364957708108000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\__init__.py
 com.ANLY52051FinalProject.dean.RSData|1480436910814016000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\RSData.py
 com.ANLY52051FinalProject.dean.__init__|1480364957732249000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\__init__.py
-com.ANLY52051FinalProject.dean.WPData|1480436558714552000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\WPData.py
+com.ANLY52051FinalProject.dean.WPData|1480440685057266000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\WPData.py
 -- END DISKCACHE
 -- START DICTIONARY
 3
-3=com.ANLY52051FinalProject.dean.SentTok
+3=com.ANLY52051FinalProject.dean.DictBuilder
 2=com.ANLY52051FinalProject.dean.RSData
 1=com.ANLY52051FinalProject.dean.WPData
 -- END DICTIONARY
 -- START TREE 1
-9
+13
 csv|1|csvfile!11@
 dfi|2|dfile!19@dfile!11@
-i|0|
+fdi|1|fdistp!27@
 nfi|2|nfile!11@nfile!19@
+nte|1|nText!27@
+pto|0|
 rea|1|reader!11@
-sen|0|
-tem|1|temp!27@
+tag|1|taggedVocab!27@
+tem|2|tempTxt!27@tempTok!27@
 tok|1|tok!27@
 txt|1|txtFile!27@
+var|0|
+voc|1|vocab!27@
 -- END TREE
 -- START TREE 2
 0

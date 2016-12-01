@@ -1,0 +1,59 @@
+'''
+Created on Nov 29, 2016
+
+@author: demon
+'''
+
+import re
+
+def pToken(psent):
+    tok = psent.split(' ')
+    temp = []
+    for t in tok:
+        if re.search('^[A-Za-z0-9]*&amp;[A-Za-z0-9]*$',t):
+            tlist = re.findall('[A-Za-z0-9]+',t)
+            temp.append(tlist[0])
+            temp.append('&')
+            temp.append(tlist[2])
+        elif re.search('^&quot;[A-Za-z0-9]*$',t):
+            tlist = re.findall('[A-Za-z0-9]+',t)
+            temp. append('"')
+            temp.append(tlist[1])
+        elif re.search('^[A-Za-z0-9]*[!@\*\?]*&quot;$',t):
+            for x in re.findall('[A-Za-z0-9]+[!@\*\?]*',t):
+                for y in re.findall('[A-Za-z0-9]+',x):
+                    temp.append(y)
+                for y in re.findall('[!@*\?]+',x):
+                    temp.append(y)
+            temp. append('"')
+        elif re.search('^[A-Za-z0-9]+(\.\.+[A-Za-z0-9]*[!@\*\?]*)+$',t):
+            wlist = re.findall('[A-Za-z0-9]+[!@\*\?]*',t)
+            dlist = re.findall('\.\.+',t)
+            i=0
+            j=0
+            while (i<len(wlist)) & (j<len(dlist)):
+                if re.search('^[A-Za-z0-9]+[!@\*\?]*$',wlist[i]):
+                    for x in re.findall('[A-Za-z0-9]+',wlist[i]):
+                        temp.append(x)
+                    for x in re.findall('[!@*\?]+',wlist[i]):
+                        temp.append(x)
+                temp.append(dlist[j])
+                i = i+1
+                j = j+1
+        elif re.search('http://[A-Za-z0-9\./]+$',t):
+            temp.append("L1NK")
+        elif re.search('^[A-Za-z0-9]+\.[A-Za-z0-9]+$',t):
+            temp.append("L1NK")
+        elif re.search('^[A-Za-z0-9]+[!@\*\?]+$',t):
+            for x in re.findall('[A-Za-z0-9]+',t):
+                temp.append(x)
+            for x in re.findall('[!@\*\?]+',t):
+                temp.append(x)
+        else:
+            temp.append(t)
+    return temp
+
+var = raw_input("Enter the string :")
+tempList = pToken(var)
+for x in tempList:
+    print x

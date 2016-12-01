@@ -1,0 +1,9 @@
+'''
+Created on Nov 30, 2016
+
+@author: demon
+'''
+        elif re.search('http://[A-Za-z0-9\./]+$',t):
+            temp.append("L1NK")
+        elif re.search('^[A-Za-z0-9]+\.[A-Za-z0-9]+$',t):
+            temp.append("L1NK")
