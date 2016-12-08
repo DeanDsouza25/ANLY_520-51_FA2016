@@ -1,0 +1,31 @@
+'''
+Created on Nov 29, 2016
+
+@author: demon
+'''
+# Loading necessary Libaries
+from __future__ import division
+import nltk
+from nltk.text import Text
+from ProjectTokenizer import pToken
+from ProjectTagger import pTagger
+
+# Loading all text data
+txtFile=open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/AllText.txt','r')
+tempTxt = txtFile.read()
+txtFile.close()
+
+# Tokenizing the text
+pTok=pToken(tempTxt)
+
+# Basic statistics of the text
+print("Number of Words : "+str(len(pTok)))
+print("Number of Unique Words : "+str(len(set(pTok))))
+print("Lexical Diversity : "+str(len(pTok)/len(set(pTok))))
+
+# Converting to nltk.text.Text form to easily create Frequency Distribution 
+nText = Text(pTok)
+fdistp = nltk.FreqDist(nText)
+vocab = fdistp.keys()
+print(vocab[:50])
+print(nText.collocations())

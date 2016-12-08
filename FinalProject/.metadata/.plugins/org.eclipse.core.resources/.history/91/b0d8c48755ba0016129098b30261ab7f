@@ -1,0 +1,44 @@
+'''
+Created on Nov 30, 2016
+
+@author: demon
+'''
+# Importing required Libraries
+import re
+import nltk
+
+# Main function for performing tagging (in the context of the data)
+# Note: Utilizes pos_tag() provided by nltk
+def pTagger(tok):
+    temp = [('','')]
+    for t in tok:
+        if re.search('^@[A-Za-z0-9_]+$',t):
+            temp.append((t,"UserID"))
+            print("UserId")
+        elif re.search('^http://[A-Za-z0-9\./]+$',t):
+            temp.append((t,"link"))
+            print("link")
+        elif re.search('^[A-Za-z0-9]+\.[A-Za-z0-9]+$',t):
+            temp.append((t,"link"))
+            print("link")
+        elif re.search('^[A-Za-z]+[A-Za-z0-9_\-\.\!\#\$\%\&\*\+/=\?\^\`\{\|\}\~]+@[A-Za-z\.\-]+$',t):
+            temp.append((t,"email"))
+            print("email")
+        elif re.search('^#[A-Za-z0-9_\-\+\.]+$',t):
+            temp.append((t,"htag"))
+            print("hashtag")
+        elif re.search('^[\.\*\?\,\!_\-\#\$\%\&\*\+/\=\?\^\`\{\|\}\~]+$',t):
+            temp.append((t,"punct"))
+            print("punct")
+        elif re.search('^[\:\;\%8XB\=]{,2}[\-]?[\$\|\\#\^\<\>\&_\*3ODLSJPdC\[\]\'\{\}/\(\)\@\!\,]+$',t) || re.search('^[\$\|\\#\^\<\>\&_\*3ODLSJPdC\[\]\'\{\}/\(\)\@\!\,]+[\-]?[\:\;\%8XB\=]{,2}$',t) :
+            temp.append((t,"emoji"))
+            print("emoji")        
+        elif re.search('^[0-9]+\.?[0-9]*\$?$',t):
+            temp.append((t,"num"))
+            print("num")
+        elif nltk.pos_tag(t) != []:
+            temp.append(nltk.pos_tag(t)[0])
+            print("default")
+        else:
+            print("Encountered empty")
+    return temp

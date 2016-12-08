@@ -1,0 +1,138 @@
+'''
+@author: Dean D'souza
+'''
+# Importing Required Libraries
+import csv
+import nltk
+import math
+import random
+import re
+import collections
+from ProjectTokenizer import pToken
+from nltk.corpus import stopwords
+
+# Empty holder for all tweets
+allTweets = []
+
+# Reading in the data from the file
+csvfile = open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/EmotionText.csv')
+reader = csv.DictReader(csvfile, dialect='excel')
+for row in reader:
+    allTweets.append((row['content'], row['sentiment']))
+csvfile.close()
+
+# Separating based on sentiment
+emptySet = [(e,s) for (e,s) in allTweets if s in ['empty']]
+neutralSet = [(e,s) for (e,s) in allTweets if s in ['neutral']]
+sadnessSet = [(e,s) for (e,s) in allTweets if s in ['sadness']]
+happinessSet = [(e,s) for (e,s) in allTweets if s in ['happiness']]
+loveSet = [(e,s) for (e,s) in allTweets if s in ['love']]
+hateSet = [(e,s) for (e,s) in allTweets if s in ['hate']]
+surpriseSet = [(e,s) for (e,s) in allTweets if s in ['surprise']]
+reliefSet = [(e,s) for (e,s) in allTweets if s in ['relief']]
+worrySet = [(e,s) for (e,s) in allTweets if s in ['worry']]
+
+# Defining cutoffs
+emCutOff = int(math.floor(len(emptySet)*0.8))
+neCutOff = int(math.floor(len(neutralSet)*0.8))
+saCutOff = int(math.floor(len(sadnessSet)*0.8))
+hapCutOff = int(math.floor(len(happinessSet)*0.8))
+loCutOff = int(math.floor(len(loveSet)*0.8))
+haCutOff = int(math.floor(len(hateSet)*0.8))
+suCutOff = int(math.floor(len(surpriseSet)*0.8))
+reCutOff = int(math.floor(len(reliefSet)*0.8))
+woCutOff = int(math.floor(len(worrySet)*0.8))
+
+# Separating training and testing sets
+trainTweets = emptySet[:emCutOff] + neutralSet[:neCutOff] + sadnessSet[:saCutOff] + happinessSet[:hapCutOff] + loveSet[:loCutOff] + hateSet[:haCutOff] + surpriseSet[:suCutOff] + reliefSet[:reCutOff] + worrySet[:woCutOff]
+testTweets = emptySet[emCutOff:] + neutralSet[neCutOff:] + sadnessSet[saCutOff:]+ happinessSet[hapCutOff:] + loveSet[loCutOff:] + hateSet[haCutOff:] + surpriseSet[suCutOff:] + reliefSet[reCutOff:] + worrySet[woCutOff:]
+
+# Randomizing the order
+random.shuffle(trainTweets)
+random.shuffle(testTweets)
+
+# Creating a list of tokenized words and sentiment
+tweets = []
+for (words,sentiment) in trainTweets:
+    filter1Words=([w.lower() for w in pToken(words) if len(w) >= 2 and w not in stopwords.words('english')])
+    tweets.append((filteredWords,sentiment))
+
+# Function to create list of all words
+def getWordsInTweets(tweets):
+    wordsInTweets=[]
+    for (word, sentiment) in tweets:
+        wordsInTweets.append(word)
+    return wordsInTweets
+
+# Function to get frequency distribution to be used as feature
+def getWordFeatures(tWordList):
+    tWordList = nltk.FreqDist(tWordList)
+    wordFeats = tWordList.keys()
+    return wordFeats
+
+tweetsFeats = getWordFeatures(getWordsInTweets(tweets))
+
+# Function to extract features from new Tweets
+def FeatExt(ttweet):
+    tokWords = set(w.lower() for w in pToken(ttweet) if len(w) >= 2 and w not in stopwords.words('english'))
+    feat = {}
+    for e in tweetsFeats:
+            feat['contains(%s)' % e] = (e for e in tokWords)
+    feat['pemoj']=0
+    for e in tokWords:
+        if re.search('^[\.\*\?\,\!\&/\^\`\{\|\}\~\"\$\#\'\:\;\)\(\s]+$',e):
+            if len(e) > feat['pemoj']:
+                feat['pemoj'] =len(e)
+    return feat
+
+# Preparing data for building and testing Naive Bayes Classifier
+trainTweetsApplied = nltk.classify.apply_features(FeatExt, trainTweets)
+testTweetsApplied = nltk.classify.apply_features(FeatExt, testTweets) 
+
+# Building the Naive Bayes classifier
+classifierNB = nltk.NaiveBayesClassifier.train(trainTweetsApplied)
+
+# Most Informative features
+print(classifierNB.show_most_informative_features(30))
+
+# Preparing data for evaluation
+refSet = collections.defaultdict(set)
+testFeatSet = collections.defaultdict(set)
+for i, (feature,sentiment) in enumerate(testTweetsApplied):
+    refSet[sentiment].add(i)
+    pred= classifierNB.classify(feature)
+    testFeatSet[pred].add(i)
+
+# Evaluation function
+def evaluate(refSet, testFeatSet):
+    print("For empty tag:")
+    print("Precision:",nltk.metrics.precision(refSet['empty'], testFeatSet['empty']))
+    print("Recall:",nltk.metrics.recall(refSet['empty'], testFeatSet['empty']))
+    print("For neutral tag:")
+    print("Precision:",nltk.metrics.precision(refSet['neutral'], testFeatSet['neutral']))
+    print("Recall:",nltk.metrics.recall(refSet['neutral'], testFeatSet['neutral']))
+    print("For sadness tag:")
+    print("Precision:",nltk.metrics.precision(refSet['sadness'], testFeatSet['sadness']))
+    print("Recall:",nltk.metrics.recall(refSet['sadness'], testFeatSet['sadness']))
+    print("For happiness tag:")
+    print("Precision:",nltk.metrics.precision(refSet['happiness'], testFeatSet['happiness']))
+    print("Recall:",nltk.metrics.recall(refSet['happiness'], testFeatSet['happiness']))
+    print("For love tag:")
+    print("Precision:",nltk.metrics.precision(refSet['love'], testFeatSet['love']))
+    print("Recall:",nltk.metrics.recall(refSet['love'], testFeatSet['love']))
+    print("For hate tag:")
+    print("Precision:",nltk.metrics.precision(refSet['hate'], testFeatSet['hate']))
+    print("Recall:",nltk.metrics.recall(refSet['hate'], testFeatSet['hate']))
+    print("For surprise tag:")
+    print("Precision:",nltk.metrics.precision(refSet['surprise'], testFeatSet['surprise']))
+    print("Recall:",nltk.metrics.recall(refSet['surprise'], testFeatSet['surprise']))
+    print("For relief tag:")
+    print("Precision:",nltk.metrics.precision(refSet['relief'], testFeatSet['relief']))
+    print("Recall:",nltk.metrics.recall(refSet['relief'], testFeatSet['relief']))
+    print("For worry tag:")
+    print("Precision:",nltk.metrics.precision(refSet['worry'], testFeatSet['worry']))
+    print("Recall:",nltk.metrics.recall(refSet['worry'], testFeatSet['worry']))
+
+# Evaluating
+print(nltk.classify.accuracy(classifierNB,testTweetsApplied))
+evaluate(refSet,testFeatSet)
