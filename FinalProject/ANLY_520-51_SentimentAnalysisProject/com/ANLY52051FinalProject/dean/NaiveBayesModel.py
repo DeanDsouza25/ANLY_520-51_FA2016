@@ -11,7 +11,7 @@ import collections
 from ProjectTokenizer import pToken
 from nltk.corpus import stopwords
 
-# Empty holder for all tweets
+# Empty holder for all Tweets
 allTweets = []
 
 # Reading in the data from the file

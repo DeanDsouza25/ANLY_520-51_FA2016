@@ -5,10 +5,10 @@ com.ANLY52051FinalProject.dean.ProjectTagger|1481065312257220000|C:\Users\demon\
 com.ANLY52051FinalProject.dean.BasicStats|1481142807782275000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\BasicStats.py
 com.__init__|1480364957692485000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\__init__.py
 com.ANLY52051FinalProject.__init__|1480364957708108000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\__init__.py
-com.ANLY52051FinalProject.dean.RSData|1480436910814016000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\RSData.py
 com.ANLY52051FinalProject.dean.ProjectTokenizer|1481143728848327000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\ProjectTokenizer.py
+com.ANLY52051FinalProject.dean.RSData|1480436910814016000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\RSData.py
+com.ANLY52051FinalProject.dean.NaiveBayesModel|1481158169906587000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\NaiveBayesModel.py
 com.ANLY52051FinalProject.dean.__init__|1480364957732249000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\__init__.py
-com.ANLY52051FinalProject.dean.NaiveBayesModel|1481149573152500000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\NaiveBayesModel.py
 com.ANLY52051FinalProject.dean.WPData|1480440685057266000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\WPData.py
 -- END DISKCACHE
 -- START DICTIONARY
@@ -21,18 +21,16 @@ com.ANLY52051FinalProject.dean.WPData|1480440685057266000|C:\Users\demon\OneDriv
 2=com.ANLY52051FinalProject.dean.WPData
 -- END DICTIONARY
 -- START TREE 1
-41
+39
 all|1|allTweets!11@
-bes|0|
 cla|1|classifierNB!11@
-csv|2|csvfile!19@csvfile!11@
+csv|2|csvfile!11@csvfile!19@
 dfi|2|dfile!27@dfile!19@
 emc|1|emCutOff!11@
 emp|1|emptySet!11@
 eva|1|evaluate!10@
 fdi|2|fdisttag!35@fdistv!35@
 fea|1|FeatExt!10@
-fil|1|filter1Words!11@
 get|2|getWordsInTweets!10@getWordFeatures!10@
 hac|1|haCutOff!11@
 hap|2|hapCutOff!11@happinessSet!11@
