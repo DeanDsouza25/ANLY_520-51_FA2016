@@ -1,0 +1,170 @@
+'''
+@author: Dean D'souza
+'''
+# Importing Required Libraries
+import csv
+import nltk
+import math
+import random
+import re
+import collections
+from ProjectTokenizer import pToken
+from nltk.corpus import stopwords
+from nltk.metrics.association import BigramAssocMeasures
+
+# Empty holder for all tweets
+allTweets = []
+
+# Reading in the data from the file
+csvfile = open('C:/Users/demon/OneDrive/Documents/GitHub/ANLY_520-51_FA2016/FinalProject/data/EmotionText.csv')
+reader = csv.DictReader(csvfile, dialect='excel')
+for row in reader:
+    allTweets.append((row['content'], row['sentiment']))
+csvfile.close()
+
+# Separating based on sentiment
+emptySet = [(e,s) for (e,s) in allTweets if s in ['empty']]
+neutralSet = [(e,s) for (e,s) in allTweets if s in ['neutral']]
+sadnessSet = [(e,s) for (e,s) in allTweets if s in ['sadness']]
+happinessSet = [(e,s) for (e,s) in allTweets if s in ['happiness']]
+loveSet = [(e,s) for (e,s) in allTweets if s in ['love']]
+hateSet = [(e,s) for (e,s) in allTweets if s in ['hate']]
+surpriseSet = [(e,s) for (e,s) in allTweets if s in ['surprise']]
+reliefSet = [(e,s) for (e,s) in allTweets if s in ['relief']]
+worrySet = [(e,s) for (e,s) in allTweets if s in ['worry']]
+
+# Defining cutoffs
+emCutOff = int(math.floor(len(emptySet)*0.8))
+neCutOff = int(math.floor(len(neutralSet)*0.8))
+saCutOff = int(math.floor(len(sadnessSet)*0.8))
+hapCutOff = int(math.floor(len(happinessSet)*0.8))
+loCutOff = int(math.floor(len(loveSet)*0.8))
+haCutOff = int(math.floor(len(hateSet)*0.8))
+suCutOff = int(math.floor(len(surpriseSet)*0.8))
+reCutOff = int(math.floor(len(reliefSet)*0.8))
+woCutOff = int(math.floor(len(worrySet)*0.8))
+
+# Separating training and testing sets
+trainTweets = emptySet[:emCutOff] + neutralSet[:neCutOff] + sadnessSet[:saCutOff] + happinessSet[:hapCutOff] + loveSet[:loCutOff] + hateSet[:haCutOff] + surpriseSet[:suCutOff] + reliefSet[:reCutOff] + worrySet[:woCutOff]
+testTweets = emptySet[emCutOff:] + neutralSet[neCutOff:] + sadnessSet[saCutOff:]+ happinessSet[hapCutOff:] + loveSet[loCutOff:] + hateSet[haCutOff:] + surpriseSet[suCutOff:] + reliefSet[reCutOff:] + worrySet[woCutOff:]
+
+# Randomizing the order
+random.shuffle(trainTweets)
+random.shuffle(testTweets)
+
+# Creating a list of Tokenized words and sentiment
+tweets = []
+for (senten,sentiment) in trainTweets:
+    filteredWords=([w.lower() for w in pToken(senten) if len(w) >= 2 and w not in stopwords.words('english')])
+    tweets.append((filteredWords,sentiment))
+
+# Function to create list of all words
+def TweetWordScores(tweets):
+    t_fd = nltk.FreqDist()
+    cond_t_fd = nltk.ConditionalFreqDist()
+    for (f,s) in tweets:
+        for w in f:
+            t_fd.inc(w)
+            cond_t_fd[s].inc(w)
+            
+    em_count = cond_t_fd['empty'].N()
+    ne_count = cond_t_fd['neutral'].N()
+    sa_count = cond_t_fd['sadness'].N()
+    hap_count = cond_t_fd['happiness'].N()
+    lo_count = cond_t_fd['love'].N()
+    ha_count = cond_t_fd['hate'].N()
+    su_count = cond_t_fd['surprise'].N()
+    re_count = cond_t_fd['relief'].N()
+    wo_count = cond_t_fd['worry'].N()
+    
+    total_count = em_count+ne_count+sa_count+ha_count+lo_count+hap_count+su_count+re_count+wo_count
+    
+    scores = {}
+    for w,f in t_fd.iteritems():
+        em_score = BigramAssocMeasures.chi_sq(cond_t_fd['empty'][w], (f,em_count), total_count)
+        ne_score = BigramAssocMeasures.chi_sq(cond_t_fd['neutral'][w], (f,ne_count), total_count)
+        sa_score = BigramAssocMeasures.chi_sq(cond_t_fd['sadness'][w], (f,sa_count), total_count)
+        hap_score = BigramAssocMeasures.chi_sq(cond_t_fd['happiness'][w], (f,ha_count), total_count)
+        lo_score = BigramAssocMeasures.chi_sq(cond_t_fd['love'][w], (f,lo_count), total_count)
+        ha_score = BigramAssocMeasures.chi_sq(cond_t_fd['hate'][w], (f,ha_count), total_count)
+        su_score = BigramAssocMeasures.chi_sq(cond_t_fd['surprise'][w], (f,su_count), total_count)
+        re_score = BigramAssocMeasures.chi_sq(cond_t_fd['relief'][w], (f,re_count), total_count)
+        wo_score = BigramAssocMeasures.chi_sq(cond_t_fd['worry'][w], (f,wo_count), total_count)
+        scores[w] = em_score+ne_score+sa_score+hap_score+lo_score+ha_score+su_score+re_score+wo_score 
+    
+    return scores
+
+def bestWords(sc,num):
+    bestVals=sorted(sc.iteritems(), key=lambda (w,s):s, reverse=True)[:num]
+    bestW=set([w for w in bestVals])
+    return bestW
+    
+tweetsScores = bestWords(TweetWordScores(tweets),10000)
+
+# Function to extract features from new tweets
+def FeatExt(ttweet):
+    tokWords = [w.lower() for w in pToken(ttweet) if len(w) >= 2 and w not in stopwords.words('english')]
+    feat = {}
+    for e in tweetsScores:
+        if e in tokWords:
+            feat['contains(%s)' % e] = e
+    feat['htag'] = 0
+    feat['punct'] = 0
+    for e in tokWords:
+        if re.search('^#[A-Za-z0-9_\-\+\.]+$',e):
+            feat['htag'] = feat['htag']+ 1
+        if re.search('^[\.\*\?\,\!\&/\^\`\{\|\}\~\"\$\#\'\:\s]+$',e):
+            feat['punct'] = feat['punct'] +len(e)
+    return feat
+
+# Preparing data for building and testing Naive Bayes Classifier
+trainTweetsApplied = nltk.classify.apply_features(FeatExt, trainTweets)
+testTweetsApplied = nltk.classify.apply_features(FeatExt, testTweets) 
+
+# Building the Naive Bayes classifier
+classifierNB = nltk.NaiveBayesClassifier.train(trainTweetsApplied)
+
+# Most Informative features
+print(classifierNB.show_most_informative_features(30))
+
+# Preparing data for evaluation
+refSet = collections.defaultdict(set)
+testFeatSet = collections.defaultdict(set)
+for i, (feature,sentiment) in enumerate(testTweetsApplied):
+    refSet[sentiment].add(i)
+    pred= classifierNB.classify(feature)
+    testFeatSet[pred].add(i)
+
+# Evaluation function
+def evaluate(refSet, testFeatSet):
+    print("For empty tag:")
+    print(nltk.metrics.precision(refSet['empty'], testFeatSet['empty']))
+    print(nltk.metrics.recall(refSet['empty'], testFeatSet['empty']))
+    print("For neutral tag:")
+    print(nltk.metrics.precision(refSet['neutral'], testFeatSet['neutral']))
+    print(nltk.metrics.recall(refSet['neutral'], testFeatSet['neutral']))
+    print("For sadness tag:")
+    print(nltk.metrics.precision(refSet['sadness'], testFeatSet['sadness']))
+    print(nltk.metrics.recall(refSet['sadness'], testFeatSet['sadness']))
+    print("For happiness tag:")
+    print(nltk.metrics.precision(refSet['happiness'], testFeatSet['happiness']))
+    print(nltk.metrics.recall(refSet['happiness'], testFeatSet['happiness']))
+    print("For love tag:")
+    print(nltk.metrics.precision(refSet['love'], testFeatSet['love']))
+    print(nltk.metrics.recall(refSet['love'], testFeatSet['love']))
+    print("For hate tag:")
+    print(nltk.metrics.precision(refSet['hate'], testFeatSet['hate']))
+    print(nltk.metrics.recall(refSet['hate'], testFeatSet['hate']))
+    print("For surprise tag:")
+    print(nltk.metrics.precision(refSet['surprise'], testFeatSet['surprise']))
+    print(nltk.metrics.recall(refSet['surprise'], testFeatSet['surprise']))
+    print("For relief tag:")
+    print(nltk.metrics.precision(refSet['relief'], testFeatSet['relief']))
+    print(nltk.metrics.recall(refSet['relief'], testFeatSet['relief']))
+    print("For worry tag:")
+    print(nltk.metrics.precision(refSet['worry'], testFeatSet['worry']))
+    print(nltk.metrics.recall(refSet['worry'], testFeatSet['worry']))
+
+# Evaluating
+print(nltk.classify.accuracy(classifierNB,testTweetsApplied))
+evaluate(refSet,testFeatSet)

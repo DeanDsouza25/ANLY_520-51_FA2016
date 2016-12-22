@@ -1,0 +1,67 @@
+-- VERSION_4
+-- START DISKCACHE_2
+C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\.metadata\.plugins\org.eclipse.core.resources\.projects\ANLY_520-51_SentimentAnalysisProject\com.python.pydev.analysis\v2_indexcache
+com.ANLY52051FinalProject.dean.ProjectTagger|1481065312257220000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\ProjectTagger.py
+com.ANLY52051FinalProject.dean.BasicStats|1481142807782275000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\BasicStats.py
+com.__init__|1480364957692485000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\__init__.py
+com.ANLY52051FinalProject.__init__|1480364957708108000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\__init__.py
+com.ANLY52051FinalProject.dean.ProjectTokenizer|1481143728848327000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\ProjectTokenizer.py
+com.ANLY52051FinalProject.dean.RSData|1480436910814016000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\RSData.py
+com.ANLY52051FinalProject.dean.NaiveBayesModel|1481158169906587000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\NaiveBayesModel.py
+com.ANLY52051FinalProject.dean.__init__|1480364957732249000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\__init__.py
+com.ANLY52051FinalProject.dean.WPData|1480440685057266000|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\WPData.py
+-- END DISKCACHE
+-- START DICTIONARY
+6
+5=com.ANLY52051FinalProject.dean.ProjectTagger
+4=com.ANLY52051FinalProject.dean.BasicStats
+3=com.ANLY52051FinalProject.dean.RSData
+6=com.ANLY52051FinalProject.dean.ProjectTokenizer
+1=com.ANLY52051FinalProject.dean.NaiveBayesModel
+2=com.ANLY52051FinalProject.dean.WPData
+-- END DICTIONARY
+-- START TREE 1
+39
+all|1|allTweets!11@
+cla|1|classifierNB!11@
+csv|2|csvfile!11@csvfile!19@
+dfi|2|dfile!27@dfile!19@
+emc|1|emCutOff!11@
+emp|1|emptySet!11@
+eva|1|evaluate!10@
+fdi|2|fdisttag!35@fdistv!35@
+fea|1|FeatExt!10@
+get|2|getWordsInTweets!10@getWordFeatures!10@
+hac|1|haCutOff!11@
+hap|2|hapCutOff!11@happinessSet!11@
+hat|1|hateSet!11@
+loc|1|loCutOff!11@
+lov|1|loveSet!11@
+nec|1|neCutOff!11@
+neu|1|neutralSet!11@
+nfi|2|nfile!19@nfile!27@
+nte|1|nText!35@
+pre|1|pred!11@
+pta|1|pTagger!42@
+pto|3|pToktemp!35@pToken!50@pTok!35@
+rea|2|reader!19@reader!11@
+rec|1|reCutOff!11@
+ref|1|refSet!11@
+rel|1|reliefSet!11@
+sac|1|saCutOff!11@
+sad|1|sadnessSet!11@
+suc|1|suCutOff!11@
+sur|1|surpriseSet!11@
+tag|2|tags!35@taggedTok!35@
+tem|1|tempTxt!35@
+tes|3|testTweets!11@testTweetsApplied!11@testFeatSet!11@
+tra|2|trainTweets!11@trainTweetsApplied!11@
+twe|2|tweets!11@tweetsFeats!11@
+txt|1|txtFile!35@
+voc|1|vocab!35@
+woc|1|woCutOff!11@
+wor|1|worrySet!11@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

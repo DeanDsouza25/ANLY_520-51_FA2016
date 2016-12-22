@@ -1,0 +1,10 @@
+MODULES_MANAGER_V2
+com.ANLY52051FinalProject.__init__|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\__init__.py
+com.ANLY52051FinalProject.dean.BasicStats|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\BasicStats.py
+com.ANLY52051FinalProject.dean.NaiveBayesModel|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\NaiveBayesModel.py
+com.ANLY52051FinalProject.dean.ProjectTagger|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\ProjectTagger.py
+com.ANLY52051FinalProject.dean.ProjectTokenizer|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\ProjectTokenizer.py
+com.ANLY52051FinalProject.dean.RSData|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\RSData.py
+com.ANLY52051FinalProject.dean.WPData|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\WPData.py
+com.ANLY52051FinalProject.dean.__init__|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\ANLY52051FinalProject\dean\__init__.py
+com.__init__|C:\Users\demon\OneDrive\Documents\GitHub\ANLY_520-51_FA2016\FinalProject\ANLY_520-51_SentimentAnalysisProject\com\__init__.py
